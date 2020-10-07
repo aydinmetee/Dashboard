@@ -1,4 +1,3 @@
-import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ChartModule } from 'primeng/chart';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

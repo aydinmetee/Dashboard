@@ -1,8 +1,7 @@
 import { Task } from './models/task';
 import { Product } from './models/product';
 import { Component } from '@angular/core';
-import {LazyLoadEvent} from 'primeng/api';
-
+import { LazyLoadEvent } from 'primeng/api';
 
 import tdata from './resources/tasks.json';
 import sdata from './resources/stocks.json';
@@ -14,30 +13,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  display:boolean=false;
-  taskForm:FormGroup;
+  display: boolean = false;
+  taskForm: FormGroup;
 
-  stocks:Product[];
-  totalRecords:number;
-  loading:boolean;
+  stocks: Product[];
+  totalRecords: number;
+  loading: boolean;
   cols: any[];
-  products:Product[];
+  products: Product[];
 
-  tasks:Task[];
-  totalTasks:number;
+  tasks: Task[];
+  totalTasks: number;
 
-  
   data: any;
   data2: any;
   data3: any;
-  
+
   newcustomer: number;
   allbills: number;
   allproducts: number;
 
-  newTask:Task;
+  newTask: Task;
 
-  constructor( private fb:FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -81,39 +79,46 @@ export class AppComponent {
     };
 
     this.taskForm = this.fb.group({
-      id:[null],
-      description:[null,Validators.required],
-      date:[null,Validators.required]
+      id: [null],
+      description: [null, Validators.required],
+      date: [null, Validators.required],
     });
-
   }
   ngOnInit(): void {
-    this.stocks=sdata;
-    this.totalRecords=sdata.length;
-    this.loading=true;
+    this.stocks = sdata;
+    this.totalRecords = sdata.length;
+    this.loading = true;
 
-    this.tasks=tdata;
-    this.totalTasks=tdata.length;
-
+    this.tasks = tdata;
+    this.totalTasks = tdata.length;
   }
-  loadStocks(event: LazyLoadEvent){
-    this.loading=true;
-    event.rows=3;
+  loadStocks(event: LazyLoadEvent) {
+    this.loading = true;
+    event.rows = 3;
 
     setTimeout(() => {
       if (this.stocks) {
-          this.products = this.stocks.slice(event.first, (event.first + event.rows));
-          this.loading = false;
+        this.products = this.stocks.slice(
+          event.first,
+          event.first + event.rows
+        );
+        this.loading = false;
       }
-  }, 1000);
+    }, 1000);
   }
-  showDialog(){
-    this.display=true;
+  showDialog() {
+    this.display = true;
   }
 
-  update(){
-    this.newTask=Object.assign({},this.taskForm.value);
+  update() {
+    this.newTask = Object.assign({}, this.taskForm.value);
+    // this.newTask.id=Math.floor(Math.random() * 100) number field is empty now.
     this.tasks.push(this.newTask);
-
+    this.newTask = null;
+    this.display = false;
+    this.taskForm.reset();
+  }
+  removeTask(index: number) {
+    this.tasks.splice(index, 1);
   }
 }

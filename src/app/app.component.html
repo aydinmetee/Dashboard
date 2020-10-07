@@ -148,6 +148,7 @@
             <button
               pButton
               pRipple
+              (click)="removeTask(index)"
               type="button"
               icon="pi pi-times"
               class="p-button-rounded p-button-danger p-button-text bttn"
@@ -174,34 +175,43 @@
       style="margin-left: 25rem; display: flex; margin-top: -2.3rem"
     ></button>
     <p-dialog
-      header="Header"
+      header="Yeni Görev Ekle"
       [(visible)]="display"
       [style]="{ width: '50vw' }"
       [baseZIndex]="10000"
     >
-    <div>
-      <form [formGroup]="taskForm" (ngSubmit)="update()">
-        <div>
+      <div>
+        <form [formGroup]="taskForm">
           <div>
-            <label>Description</label>
-            <input type="text" fromControlName="description" required />
+            <div>
+              <span class="p-float-label">
+                <input
+                  type="text"
+                  id="inputtext"
+                  pInputText
+                  formControlName="description"
+                />
+                <label for="inputtext">Description</label>
+              </span>
+            </div>
+            <div>
+              <span class="p-float-label">
+                <input
+                  type="text"
+                  id="inputtext2"
+                  pInputText
+                  formControlName="date"
+                />
+                <label for="inputtext2">Date</label>
+              </span>
+            </div>
           </div>
-          <div>
-            <label>Date</label>
-            <input type="text" fromControlName="date" required />
-          </div>
-          <div>
-            <label>Number</label>
-            <input type="text" fromControlName="id" required />
-          </div>
-        </div>
-        <input type="submit">
-      </form>
-    </div>
+        </form>
+      </div>
       <ng-template pTemplate="footer">
         <p-button
           icon="pi pi-check"
-          (click)="display = false"
+          (click)="update()"
           label="Yes"
           styleClass="p-button-text"
         ></p-button>
