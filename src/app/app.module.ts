@@ -10,11 +10,15 @@ import { OrderListModule } from 'primeng/orderlist';
 import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
 import {CarouselModule} from 'primeng/carousel';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'primeng/calendar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-
+import {DialogModule} from 'primeng/dialog';
+import {ToastModule} from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,7 +37,14 @@ import { ButtonModule } from 'primeng/button';
     TabViewModule,
     CheckboxModule,
     ButtonModule,
-    CarouselModule
+    CarouselModule,
+    DialogModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    CalendarModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

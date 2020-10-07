@@ -169,9 +169,49 @@
       pRipple
       type="button"
       label="Ekle"
+      (click)="showDialog()"
       class="p-button-rounded p-button-success"
       style="margin-left: 25rem; display: flex; margin-top: -2.3rem"
     ></button>
+    <p-dialog
+      header="Header"
+      [(visible)]="display"
+      [style]="{ width: '50vw' }"
+      [baseZIndex]="10000"
+    >
+    <div>
+      <form [formGroup]="taskForm" (ngSubmit)="update()">
+        <div>
+          <div>
+            <label>Description</label>
+            <input type="text" fromControlName="description" required />
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="text" fromControlName="date" required />
+          </div>
+          <div>
+            <label>Number</label>
+            <input type="text" fromControlName="id" required />
+          </div>
+        </div>
+        <input type="submit">
+      </form>
+    </div>
+      <ng-template pTemplate="footer">
+        <p-button
+          icon="pi pi-check"
+          (click)="display = false"
+          label="Yes"
+          styleClass="p-button-text"
+        ></p-button>
+        <p-button
+          icon="pi pi-times"
+          (click)="display = false"
+          label="No"
+        ></p-button>
+      </ng-template>
+    </p-dialog>
   </div>
   <div class="p-col-12 p-md-6 p-lg-6">
     <h3 class="header-text" style="margin-top: -2rem">ÇOK SATILAN ÜRÜNLER</h3>
