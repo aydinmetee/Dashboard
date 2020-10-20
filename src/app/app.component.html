@@ -55,12 +55,15 @@
     </div>
   </div>
   <div class="p-col-12 p-md-6 p-lg-6">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <h3 style="color: black">KRİTİK STOK BİLGİSİ</h3>
+    </div>
     <p-table
       [value]="stocks"
       [lazy]="true"
       (onLazyLoad)="loadStocks($event)"
       [paginator]="true"
-      [rows]="3"
+      [rows]="5"
       [totalRecords]="totalRecords"
       [loading]="loading"
       [resizableColumns]="true"
@@ -68,11 +71,6 @@
       editMode="row"
       rowHover="true"
     >
-      <ng-template pTemplate="caption">
-        <div class="p-d-flex p-ai-center p-jc-between">
-          <h3 style="color: black">KRİTİK STOK BİLGİSİ</h3>
-        </div>
-      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th
@@ -148,7 +146,7 @@
             <button
               pButton
               pRipple
-              (click)="removeTask(index)"
+              (click)="removeTask(task)"
               type="button"
               icon="pi pi-times"
               class="p-button-rounded p-button-danger p-button-text bttn"
@@ -212,13 +210,8 @@
         <p-button
           icon="pi pi-check"
           (click)="update()"
-          label="Yes"
+          label="Ekle"
           styleClass="p-button-text"
-        ></p-button>
-        <p-button
-          icon="pi pi-times"
-          (click)="display = false"
-          label="No"
         ></p-button>
       </ng-template>
     </p-dialog>

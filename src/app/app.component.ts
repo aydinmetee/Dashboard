@@ -1,9 +1,10 @@
+import { Account } from './models/account';
+import { DataService } from './services/data.service';
 import { Task } from './models/task';
 import { Product } from './models/product';
 import { Component } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
-import tdata from './resources/tasks.json';
 import sdata from './resources/stocks.json';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -16,6 +17,8 @@ export class AppComponent {
   display: boolean = false;
   taskForm: FormGroup;
 
+  totals:any[];
+  stocksource:Product[];
   stocks: Product[];
   totalRecords: number;
   loading: boolean;
@@ -35,7 +38,13 @@ export class AppComponent {
 
   newTask: Task;
 
-  constructor(private fb: FormBuilder) {
+  account:Account[];
+  month:string[]=[];
+  income:number[]=[];
+  expense:number[]=[];
+
+
+  constructor(private fb: FormBuilder,private dataService:DataService) {
     this.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -63,9 +72,6 @@ export class AppComponent {
         },
       ],
     };
-    this.newcustomer = 27;
-    this.allproducts = 1560;
-    this.allbills = 64;
 
     this.data3 = {
       labels: ['Klima', 'Kombi', 'Hava Temizleyici'],
@@ -85,22 +91,56 @@ export class AppComponent {
     });
   }
   ngOnInit(): void {
-    this.stocks = sdata;
-    this.totalRecords = sdata.length;
+    this.dataService.getAccount().subscribe(data=>{
+      this.account=data;
+      for (const acc of this.account) {
+        this.month.push(acc.month);
+        this.income.push(acc.income);
+        this.expense.push(acc.expense);
+      }
+      console.log(this.month);
+    })
+    this.dataService.getProduct().subscribe(data=>{
+      this.stocksource = data;
+      this.totalRecords = data.length
+    })
+    this.dataService.getMostSale().subscribe(data =>{
+      this.products = data;
+    })
+    this.dataService.getTotals().subscribe(data=>{
+      this.totals=data;
+      for (const iter of this.totals) {
+        if(iter.name=="allbills"){
+          this.allbills=iter.piece;
+        }
+        if(iter.name=="totalsale"){
+          this.allproducts=iter.piece;
+        }
+        if(iter.name=="newcustomer"){
+          this.newcustomer=iter.piece;
+        }
+          
+        
+      }
+    })
+    
     this.loading = true;
 
-    this.tasks = tdata;
-    this.totalTasks = tdata.length;
+    this.dataService.getTasks().subscribe(tsk=>{
+      this.tasks=tsk;
+      this.totalTasks=tsk.length;
+    })
+    
   }
   loadStocks(event: LazyLoadEvent) {
     this.loading = true;
-    event.rows = 3;
+    event.rows = 5;
 
     setTimeout(() => {
-      if (this.stocks) {
-        this.products = this.stocks.slice(
+      if (this.stocksource) {
+        this.stocks = this.stocksource.slice(
           event.first,
-          event.first + event.rows
+          (event.first + event.rows)
         );
         this.loading = false;
       }
@@ -112,13 +152,11 @@ export class AppComponent {
 
   update() {
     this.newTask = Object.assign({}, this.taskForm.value);
-    // this.newTask.id=Math.floor(Math.random() * 100) number field is empty now.
-    this.tasks.push(this.newTask);
-    this.newTask = null;
-    this.display = false;
-    this.taskForm.reset();
+    this.dataService.createTask(this.newTask).subscribe(data => this.tasks.push(data));
+    window.location.reload();
   }
-  removeTask(index: number) {
-    this.tasks.splice(index, 1);
+  removeTask(task:Task) {
+    this.dataService.deleteTask(task.id).subscribe();
+    window.location.reload();
   }
 }
