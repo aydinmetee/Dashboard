@@ -5,7 +5,6 @@ import { Product } from './models/product';
 import { Component } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
-import sdata from './resources/stocks.json';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

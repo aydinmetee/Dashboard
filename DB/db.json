@@ -1,0 +1,89 @@
+{
+    "products": [
+        {
+            "name":"Test Ürünü-1",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":5
+        },
+        {
+            "name":"Test Ürünü-2",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":12
+        },
+        {
+            "name":"Test Ürünü-3",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":3
+        },
+        {
+            "name":"Test Ürünü-4",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":7
+        },
+        {
+            "name":"Test Ürünü-5",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":9
+        }
+    ],
+    "tasks": [
+        {
+            "id":1,
+            "description":"Test Task Description -1",
+            "Date":"25.01.2020"
+        },
+        {
+            "id":2,
+            "description":"Test Task Description -2",
+            "Date":"13.05.2020"
+        },
+        {
+            "id":3,
+            "description":"Test Task Description -3",
+            "Date":"14.09.2020"
+        },
+        {
+            "id":4,
+            "description":"Test Task Description -4",
+            "Date":"05.11.2020"
+        }
+    ],
+    "totalsale": [
+        {
+            "name":"allbills",
+            "piece":245
+        },
+        {
+            "name":"newcustomer",
+            "piece":34
+        },
+        {
+            "name":"totalsale",
+            "piece":785
+        }
+    ],
+    "topsale": [
+        {
+            "name":"Çok Satılan Ürün-1",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":121
+        },
+        {
+            "name":"Çok Satılan Ürün-2",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":95
+        },
+        {
+            "name":"Çok Satılan Ürün-3",
+            "image":"https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "piece":24
+        }
+    ],
+    "account": [
+        {
+            "month":"January",
+            "income":145,
+            "expense":59
+        }
+    ]
+}
